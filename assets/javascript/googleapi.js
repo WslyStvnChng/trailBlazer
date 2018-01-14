@@ -1,9 +1,13 @@
-var map;
+
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.739236, lng: -104.990251 },
-    zoom: 13
-    // maptypeId = google.maps.MapTypeId.ROADMAP
-  });
+    var myLatlng = new google.maps.LatLng(39.739236, -104.990251);
+    var mapOptions = {
+        zoom: 9,
+        center: myLatlng,
+        mapTypeId: 'terrain'
+        };
+   
+    var map = new google.maps.Map(document.getElementById('map'),
+      mapOptions);
 }
-window.onload();
+
