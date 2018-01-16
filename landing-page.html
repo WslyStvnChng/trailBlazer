@@ -17,31 +17,31 @@
   <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
   <!-- Slider CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/nouislider.css">
 
   <!-- PickerDate CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/default.date.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   
 </head>
 <body>
   
-  <!-- Cover Image and Title Text -->
+  <!-- Cover Image -->
   <div id='cover'>
     <img class="responsive-img" src="assets/images/cover-image.jpg" style="z-index: -1">
 
-  <!-- Train Info. Input Form -->
+  <!-- User Input Form -->
   <div class="form-container">
     <div class="row">
         <div class="col m12">
-          <div class="card" style="margin: 0 auto; width: 50vw; background:rgba(255,255,255, 0.85);; border-radius: 10px">
+          <div class="card" style="margin: 0 auto; width: 50vw; background:rgba(255,255,255, 0.85); border-radius: 10px">
 
               <div class="card-content">
 
-                  <!-- Train Name Input -->
+                  <!-- Location Input -->
                   <div class="row">
                       <div class="input-field col s12">
                           <input id="location-input" type="text" class="validate">
@@ -49,7 +49,7 @@
                         </div>
                   </div>
 
-                  <!-- Train Destination Input -->
+                  <!-- Activity Drop Down Input -->
                   <div class="row">
                     <div class="input-field col s12">
                         <select>
@@ -62,15 +62,16 @@
                       </div>
                   </div>
 
-                  <!-- First Train Time Input -->
+                  <!-- Search Radius Input -->
                   <label for="radius-input">Search Radius</label>
                   <form action="#">
                     <p class="range-field">
                       <input type="range" id="radius-input" min="0" max="150" />
                     </p>
                   </form>
+                  <label for='miles'>Miles: <span id='miles-value'></span></label><br><br>
 
-                  <!-- Frequency Input -->
+                  <!-- Date Input -->
                   <label for="date-input">Date (mm/dd/yyyy)</label>
                   <input type="text" class="datepicker" id='date-input'>
                   
