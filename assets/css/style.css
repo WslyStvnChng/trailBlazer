@@ -1,0 +1,13 @@
+#cover {
+    height: 100%;
+    position: absolute;
+}
+
+.form-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    top: -550px;
+    left: 400px;
+    z-index: 2;
+}
