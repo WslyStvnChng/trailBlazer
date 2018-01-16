@@ -1,0 +1,35 @@
+<<<<<<< HEAD
+#map {
+    width: 60%;
+    height: 500px;
+    margin: 0 auto;
+    padding: 0px;
+    float: none;
+}
+
+form {
+  width: 30%;
+  float: left;
+
+=======
+#outerdiv {
+  width: 90%;
+  height: 90%;
+  position: fixed;
+  text-align: center;
+}
+
+#map {
+   width: 60%;
+   height: 60%;
+   margin: 0 auto;
+   display: inline-block;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+>>>>>>> 53702fd9f4dd408c1d176e99d91e680b8104e342
+}
