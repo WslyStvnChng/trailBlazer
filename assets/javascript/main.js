@@ -13,6 +13,9 @@ firebase.initializeApp(config);
 // Create a variable to reference the database.
 var database = firebase.database();
 
+
+
+
     // Javascript for Date Picker Form Input 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
@@ -27,6 +30,7 @@ var database = firebase.database();
 // Document Loads Before Code Runs
 $(document).ready(function() {
     $('select').material_select();
+
 
   // When Submit Button is Clicked
 $(('#submit-button')).on('click', function (event){
