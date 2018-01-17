@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
   // Initialize the Google Map API
   var infoWindow;
   function initMap() {
@@ -59,18 +59,3 @@
 // }
 
 }
-=======
-
-function initMap() {
-    var myLatlng = new google.maps.LatLng(39.739236, -104.990251);
-    var mapOptions = {
-        zoom: 9,
-        center: myLatlng,
-        mapTypeId: 'terrain'
-        };
-   
-    var map = new google.maps.Map(document.getElementById('map'),
-      mapOptions);
-}
-
->>>>>>> 53702fd9f4dd408c1d176e99d91e680b8104e342

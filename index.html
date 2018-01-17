@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
 
 <head>
@@ -22,55 +21,87 @@
 </head>
 
 <body>
-  <!-- Google Map  -->
-  <h1>Google Maps</h1>
-  <div id="map">
-  </div>
-  <div id="output">
+  <div class="container">
 
-  </div>
+    <!-- Insert site header here -->
+
+    <!-- Thumbnail and trail name/description -->
+    <div class="row">
+      <div class="col s4">
+        <a href="https://placeholder.com">
+          <img src="http://via.placeholder.com/250x140">
+        </a>
+      </div>
+      <div class="col s8">
+        <h1 id="trail-name">Trail Name</h1>
+        <p>Trail description - Lorem ipsum dolor amet trust fund celiac pinterest church-key polaroid messenger bag. Banh mi
+          jianbing microdosing 8-bit, distillery sriracha raw denim brunch affogato lyft green juice poutine waistcoat echo
+          park seitan.</p>
+      </div>
+    </div>
+    <hr>
+
+    <!-- Checklist and weather widget -->
+    <div class="row">
+      <div class="col s6">
+        <h1>What to Bring</h1>
+        <!-- Dynamically insert checklist here -->
+        <form action="#">
+          <p>
+            <input type="checkbox" id="test1" class="checkbox" />
+            <label for="test1" class="checklist-item">Water</label>
+          </p>
+          <p>
+            <input type="checkbox" id="test2" class="checkbox" />
+            <label for="test2" class="checklist-item">Backpack</label>
+          </p>
+          <p>
+            <input type="checkbox" id="test3" class="checkbox" />
+            <label for="test3" class="checklist-item">Rain jacket</label>
+          </p>
+      </div>
+      <div class="col s6">
+        <h1 id="weather">Weather</h1>
+        <!-- Insert weather widget here -->
+        <a class="weatherwidget-io" href="https://forecast7.com/en/39d25n106d29/leadville/?unit=us" data-label_1="LEADVILLE, CO"
+          data-label_2="WEATHER" data-icons="Climacons Animated" data-theme="original" data-baseColor="#3dc063" data-highColor="#ffe7e1"
+          data-lowColor="#dae9ff" data-sunColor="#ffd786" data-cloudColor="#e1f6ff" data-cloudFill="rgba(224, 243, 255, 0.45)">LEADVILLE, CO WEATHER</a>
+        <script>
+          ! function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+              js = d.createElement(s);
+              js.id = id;
+              js.src = "https://weatherwidget.io/js/widget.min.js";
+              fjs.parentNode.insertBefore(js, fjs);
+            }
+          }(document, "script", "weatherwidget-io-js");
+        </script>
+      </div>
+    </div>
+    <hr>
+    <!-- Google Maps and directions -->
+    <div class="row">
+      <div class="col s12">
+        <h1 id="googlemap">Google Maps</h1>
+        <div id="map">
+          <!-- Insert Map here -->
+        </div>
+      </div>
+    </div>
+    <!-- Google Map  -->
   </div>
 
 
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
   <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
-  <script type="text/javascript" src="./assets/javascript/googleapi.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUmWcekWrx2o2SIa3_IVXgbeDew6y08cc&callback=initMap" async
-    defer></script>
   <!-- <script src="https://maps.googleapis.com/maps/api/distancematrix/json?origins=Seattle&destinations=San+Francisco&key=AIzaSyAUmWcekWrx2o2SIa3_IVXgbeDew6y08cc"></script> -->
-=======
-<html>
-
-<head>
-  <title>Google</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- BootStrap Linksheet -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-    crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-
-</head>
-
-<body>
-<div id="outerdiv">
-  <div id="map" />
-</div> 
-
-
 
   <!-- Java -->
   <script type="text/javascript" src="./assets/javascript/googleapi.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNceJKZRhFdZSITn-8ZwmzDyJ8Co6iZhQ&callback=initMap" async defer></script>
->>>>>>> 53702fd9f4dd408c1d176e99d91e680b8104e342
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNceJKZRhFdZSITn-8ZwmzDyJ8Co6iZhQ&callback=initMap" async
+    defer>
+  </script>
 </body>
 
 </html>
