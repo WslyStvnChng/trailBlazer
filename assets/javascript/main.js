@@ -28,8 +28,10 @@ var database = firebase.database();
       });
 
 // Document Loads Before Code Runs
+
 $(document).ready(function() {
     $('select').material_select();
+        
 
     // Updates Miles in HTML When Range is Clicked
     $('.range-field').on('click', function(event){
@@ -39,6 +41,8 @@ $(document).ready(function() {
 
   // When Submit Button is Clicked
 $(('#submit-button')).on('click', function (event){
+    var latitude;
+    var longitude;
 
     // Prevent the page from refreshing
     event.preventDefault();
@@ -52,6 +56,16 @@ $(('#submit-button')).on('click', function (event){
     console.log('Search Radius:', radius)
     var date = $("#date-input").val();
     console.log('Date', date)
+
+    var cityState = location.split(", ");
+    console.log(cityState);
+
+    var city = cityState[0];
+    city.replace(' ', '+');
+    var state = cityState[1];
+    
+
+
    
     // Prevents Submit If Fields Are Empty
     if (location==="" || activity==="" || radius ==="" || date === "") {
@@ -60,13 +74,7 @@ $(('#submit-button')).on('click', function (event){
     // Otherwise
     } else {
 
-        // Save Variables to Firebase Database
-        database.ref().push({
-            location: location,
-            activity: activity,
-            radius: radius,
-            date: date,
-        });
+
 
         // Clear Input Boxes
         $('#location-input').val('');
@@ -74,6 +82,99 @@ $(('#submit-button')).on('click', function (event){
         $('#radius').val('');
         $('#date').val('');
         }
+
+        var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + ',+' + state + '&key=AIzaSyBNceJKZRhFdZSITn-8ZwmzDyJ8Co6iZhQ'
+
+
+        $.ajax({
+            url: googleURL,
+            method: "GET",
+    
+            // When AJAX Call is "Done"
+            }).done(function(response) {
+    
+                console.log(response);
+    
+                for (var i=0; i<response.results.length;i++) {
+                    console.log(response.results[i].geometry.location);
+    
+                    latitude = response.results[i].geometry.location.lat
+                    console.log(latitude)
+                    longitude = response.results[i].geometry.location.lng
+                    console.log(longitude)
+                }
+
+            // Save Variables to Firebase Database
+            database.ref('/searches').push({
+                location: location,
+                activity: activity,
+                radius: radius,
+                date: date,
+                city: city,
+                state: state,
+                longitude: longitude,
+                latitude: latitude,
+
+        });
+        // displayTrailInfo(activity, city, state, radius);
+    
+            })
+
+        console.log('Test 2', latitude, longitude);
 });
+
+
+
+
+
+function displayTrailInfo(activity, city, state, radius) {
+
+
+
+    // Empties Trail Info Container
+    $('#trail-info').empty();
+
+
+
+    // Creates URL with Search Term for Trail API
+    var trailURL = 'https://trailapi-trailapi.p.mashape.com/?limi=20&q[activities_activity_type_name_eq]=' + activity + '&q[city_cont]=' + city + '&q[state_cont]=' + state + '&radius=' + radius + ''
+    
+
+
+    $.ajax({
+        url: trailURL,
+        method: "GET",
+        headers: {
+            "X-Mashape-Key": "rDimFecbrYmshNZTs7kWjpGnCzxIp1E6X65jsnNSd1k2SjPDBi", 
+            "Accept": "text/plain"
+    }
+        // When AJAX Call is "Done"
+        }).success(function(response) {
+
+            console.log(response);
+            console.log('Test: ', latitude, longitude)
+
+            for (var i=0; i<response.places.length;i++) {
+                console.log(response.places[i].activities[0].thumbnail);
+            // $('#trail-info').append(
+                '<div id = "thumbnail"><img class="trail-thumbnail" src="' + response.places[i].activities[0].thumbnail + '<div id="trail"></div></div>'
+
+                // )
+            }
+
+            // Ben Ternary Advice
+            // typeof thumbnail ==== 'string' ? thumbnail : defaultSrc
+
+        }).error(function(error){
+            console.log('Error', error);
+        })
+    
+
+
+}
+
+
+
+
 
 });
