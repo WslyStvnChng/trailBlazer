@@ -1,14 +1,20 @@
 $(document).ready(function() {
 
-  // Checklist Arrays
-  var hotChecklist = [];
-  var coldChecklist = [];
-  var rainyChecklist = [];
-  var snowChecklist = [];
+  // Checklist Array - Universal
+  var universalChecklist = ["Water", "Extra food", "First aid kit", "Sunglasses"];
+
+  // Checklist Arrays - Weather
+  var hotChecklist = ["Breathable layers", "Sunscreen", "Rain gear"];
+  var coldChecklist = ["Warm clothing", "Hat", "Gloves"];
+  var rainChecklist = ["Rain gear", "Towel"];
+
+  // Checklist Arrays - Activity
+  var bikingChecklist = ["Bicycle", "Spare tubes", "Pump", "Bike shoes", "Socks"];
+  var hikingChecklist = ["Appropriate footwear", "Backpack", "Socks"];
+  var campingChecklist = ["Tent", "Camping chairs", "Firestarter", "Extra clothes"];
 
 
-  // Firebase
-  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+
   <script>
     // Initialize Firebase
     var config = {
