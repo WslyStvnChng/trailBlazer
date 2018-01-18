@@ -27,11 +27,20 @@ h1 {
     width: 60%;
     height: 500px;
     margin: 0 auto;
-    padding: 0px;
-    float: none;
+    /* padding: 0px;
+    float: none; */
+    position: absolute,
 }
 
-form {
-  width: 30%;
+#panel {
+  position: relative;
+  overflow: scroll;
+  width: 100%;
+  height: 15%;
   float: left;
+  z-index: 3;
+  background: white;
+  padding: 15px;
+  /* border: 1px solid red; */
+  opacity: 0.8;
 }
