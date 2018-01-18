@@ -36,7 +36,6 @@ $(document).ready(function() {
     // Updates Miles in HTML When Range is Clicked
     $('.range-field').on('click', function(event){
         $('#miles-value').text($('#radius-input').val());
-        console.log($('#radius-input').val())
     })
 
   // When Submit Button is Clicked
@@ -119,8 +118,6 @@ $(('#submit-button')).on('click', function (event){
         // displayTrailInfo(activity, city, state, radius);
     
             })
-
-        console.log('Test 2', latitude, longitude);
 });
 
 
