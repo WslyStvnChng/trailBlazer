@@ -113,18 +113,17 @@ $(('#submit-button')).on('click', function (event){
                 state: state,
                 longitude: longitude,
                 latitude: latitude,
-
         });
-        // displayTrailInfo(activity, city, state, radius);
+       displayTrailInfo(latitude, longitude, radius);
     
-            })
+        })
 });
 
 
 
 
 
-function displayTrailInfo(activity, city, state, radius) {
+function displayTrailInfo(latitude, longitude, radius) {
 
 
 
@@ -132,32 +131,38 @@ function displayTrailInfo(activity, city, state, radius) {
     $('#trail-info').empty();
 
 
+    var apiKey = '200209309-2a8d10ade11cd96cedf39716cfa65127';
 
     // Creates URL with Search Term for Trail API
-    var trailURL = 'https://trailapi-trailapi.p.mashape.com/?limi=20&q[activities_activity_type_name_eq]=' + activity + '&q[city_cont]=' + city + '&q[state_cont]=' + state + '&radius=' + radius + ''
-    
+    var trailURL ='https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&sort=distance&maxResults=15&maxDistance=' + radius + '&key=' + apiKey;
+
 
 
     $.ajax({
         url: trailURL,
         method: "GET",
-        headers: {
-            "X-Mashape-Key": "rDimFecbrYmshNZTs7kWjpGnCzxIp1E6X65jsnNSd1k2SjPDBi", 
-            "Accept": "text/plain"
-    }
         // When AJAX Call is "Done"
         }).success(function(response) {
 
+
             console.log(response);
-            console.log('Test: ', latitude, longitude)
 
-            for (var i=0; i<response.places.length;i++) {
-                console.log(response.places[i].activities[0].thumbnail);
-            // $('#trail-info').append(
-                '<div id = "thumbnail"><img class="trail-thumbnail" src="' + response.places[i].activities[0].thumbnail + '<div id="trail"></div></div>'
+            for (var i=0; i<response.trails.length;i++) {
 
-                // )
+                // var trailLatitude = response.trails[i].latitude;
+                // var trailLongitude = response.trails[i].longitude;
+            $('#trail-info').append(
+                '<div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"><div id="trail"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
+                )
+                if (response.trails[i].conditionDetails === null){
+                    console.log('No conditions');
+                } else {
+                    $('#trail-info').append('<div>Conditions: ' + response.trails[i].conditionDetails + '</div>');
+                }
             }
+
+            
+
 
             // Ben Ternary Advice
             // typeof thumbnail ==== 'string' ? thumbnail : defaultSrc
