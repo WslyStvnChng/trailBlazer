@@ -1,41 +1,51 @@
-function initMap() {
-  //Map Options
-  var options = {
+
+var infoWindow;
+function init() {
+  var myLatLng = { lat: 39.739236, lng: -104.990251 }; //Dynamtic populate their location from firebase
+
+  var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center:{lat: 39.739236,lng: -104.990251}
-  }
-  //New Map
-  var map = new google.maps.Map(document.getElementById('map'), options);
-
-  google.maps.event.addListener(map, 'click', function(event){
-    addMarker({coords:event.latLng});
+    center: myLatLng
   });
-  //Add Marker
-//   var marker = new google.maps.Marker({
-//     position:{lat:39.739236,lng:-104.990251},
-//     // position1:{lat:39.8367,lng:105.0372},
-//     map:map
-//   });
 
-//   var infoWindow = new google.maps.InfoWindow({
-//     content:'<h1>Denver, CO</h1>'
-//   });
+  var trail = new google.maps.Marker({
+    position: { lat: 39.738233, lng: -104.990255},
+    map: map,
+    title: "Train Name: "
+  });
 
-//   marker.addListener('click', function() {
-//     infoWindow.open(map, marker);
-//   });
-// }
-  addMarker({lat:39.739236,lng:-104.990251});
-  addMarker({lat:39.8367,lng:-105.0372});
-  addMarker({lat:39.6858,lng:-105.2728});
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74000, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: ",
+  });
 
-  //Add Marker Function
-  function addMarker(coords){
-    var marker = new google.maps.Marker({
-        position: coords,
-        map:map
-    });
-    
-  }
+  var trail3 = new google.maps.Marker({
+    position: { lat: 39.74000, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: ",
+  });
+
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+  
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+
+ 
 }
+
+
 
