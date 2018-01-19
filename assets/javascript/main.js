@@ -185,7 +185,7 @@ $(document).on('click', ('#trail'), function(event){
     var trailName = $(this).data("name");
     console.log('Trail Name: ', trailName)
 
-    database.ref('/trails').push({
+    database.ref('/trails').set({
         trailName: trailName,
         trailLatitude: trailLatitude,
         trailLongitude: trailLongitude,
