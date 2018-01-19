@@ -152,7 +152,7 @@ function displayTrailInfo(latitude, longitude, radius) {
                 // var trailLatitude = response.trails[i].latitude;
                 // var trailLongitude = response.trails[i].longitude;
             $('#trail-info').append(
-                '<div id=trail data-name="' + response.trails[i].name + '"data-latitude="' + response.trails[i].latitude + '"data-longitude="' + response.trails[i].longitude +'"><div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"></div><div id="info"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
+                '<div id=trail data-name="' + response.trails[i].name + '"data-location="' + response.trails[i].location + '"data-latitude="' + response.trails[i].latitude + '"data-longitude="' + response.trails[i].longitude +'"><div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"></div><div id="info"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
                 )
                 if (response.trails[i].conditionDetails === null){
                     console.log('No conditions');
@@ -184,11 +184,22 @@ $(document).on('click', ('#trail'), function(event){
     console.log('Trail Longitude: ', trailLongitude);
     var trailName = $(this).data("name");
     console.log('Trail Name: ', trailName)
+    var trailLocation = $(this).data('location');
+    console.log('Trail Location: ', trailLocation);
+
+    var trailCityState = trailLocation.split(", ");
+    console.log(trailCityState);
+
+    var trailCity = trailCityState[0];
+    trailCity.replace(' ', '+');
+    var trailState = trailCityState[1];
 
     database.ref('/trails').set({
         trailName: trailName,
         trailLatitude: trailLatitude,
         trailLongitude: trailLongitude,
+        trailCity: trailCity,
+        trailState: trailState,
     })
 })
 
