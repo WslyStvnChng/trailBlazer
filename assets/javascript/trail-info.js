@@ -13,6 +13,42 @@ $(document).ready(function() {
   var hikingChecklist = ["Appropriate footwear", "Backpack", "Socks"];
   var campingChecklist = ["Tent", "Sleeping bag", "Sleeping pad", "Camping chairs", "Firestarter", "Extra clothes"];
 
+  // User-defined checklist Array
+  var userChecklist = [];
+
+
+  var list = JSON.parse(localStorage.getItem("checklist"));
+
+  // Checks to see if the todolist exists in localStorage and is an array currently
+  // If not, set a local list variable to an empty array
+  // Otherwise list is our current list of todos
+  if (!Array.isArray(list)) {
+    list = [];
+  }
+
+  function writeChecklist() {
+    // $("#checklist").empty(); // empties out the html
+
+    var insideList = JSON.parse(localStorage.getItem("checklist"));
+
+    // Checks to see if we have any todos in localStorage
+    // If we do, set the local insideList variable to our todos
+    // Otherwise set the local insideList variable to an empty array
+    if (!Array.isArray(insideList)) {
+      insideList = [];
+    }
+
+    // render our insideList todos to the page
+    for (var i = 0; i < insideList.length; i++) {
+      var p = $("<p>").text(insideList[i]);
+      var b = $("<button class='delete'>").text("x").attr("data-index", i);
+      p.prepend(b);
+      $("#checklist").prepend(p);
+    }
+  }
+
+  writeChecklist();
+
   // Add checklist item to list from user input
   $("#submit-item").on("click", function(event) {
     event.preventDefault();
@@ -36,11 +72,13 @@ $(document).ready(function() {
     checkListItem.append(newInputItem);
     checkListItem.append(labelTag);
 
+    userChecklist.push(newItem);
     $("#checklist").append(checkListItem);
+    $("#add-item").empty();
 
     // Add code to save added items locally
 
-    console.log(newItem);
+    console.log(userChecklist);
 
   });
 
