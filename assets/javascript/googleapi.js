@@ -1,46 +1,41 @@
-  // Directions to map services
-
-// Initialize the Google Map API
-var infoWindow;
 function initMap() {
-  //Latitude and Longitude of Denver, Colorado
-  var myLatLng = { lat: 39.739236, lng: -104.990251 };
+  //Map Options
+  var options = {
+    zoom: 10,
+    center:{lat: 39.739236,lng: -104.990251}
+  }
+  //New Map
+  var map = new google.maps.Map(document.getElementById('map'), options);
 
-  //Google Map
-  var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
-    center: myLatLng
+  google.maps.event.addListener(map, 'click', function(event){
+    addMarker({coords:event.latLng});
   });
-  infoWindow = new google.maps.InfoWindow();
+  //Add Marker
+//   var marker = new google.maps.Marker({
+//     position:{lat:39.739236,lng:-104.990251},
+//     // position1:{lat:39.8367,lng:105.0372},
+//     map:map
+//   });
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+//   var infoWindow = new google.maps.InfoWindow({
+//     content:'<h1>Denver, CO</h1>'
+//   });
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent("Haha Found You!");
-        infoWindow.open(map);
-        map.setCenter(pos);
-      },
-      function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      }
-    );
-  } else {
-    handleLocationError(false, infoWindow, map.getCenter());
+//   marker.addListener('click', function() {
+//     infoWindow.open(map, marker);
+//   });
+// }
+  addMarker({lat:39.739236,lng:-104.990251});
+  addMarker({lat:39.8367,lng:-105.0372});
+  addMarker({lat:39.6858,lng:-105.2728});
+
+  //Add Marker Function
+  function addMarker(coords){
+    var marker = new google.maps.Marker({
+        position: coords,
+        map:map
+    });
+    
   }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-}
