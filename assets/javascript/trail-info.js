@@ -11,45 +11,76 @@ $(document).ready(function() {
   // Checklist Arrays - Activity
   var bikingChecklist = ["Bicycle", "Spare tubes", "Pump", "Bike shoes", "Socks"];
   var hikingChecklist = ["Appropriate footwear", "Backpack", "Socks"];
-  var campingChecklist = ["Tent", "Sleeping bag", "Sleeping pad", "Camping chairs", "Firestarter", "Extra clothes"];
+  var campingChecklist = ["Tent", "Sleeping bag", "Sleeping pad", "Camping chairs", "Fire starter", "Extra clothes"];
 
   // User-defined checklist Array
   var userChecklist = [];
 
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBEwnr_R2pjbyqaKWxKuSyQBtm3LbTdgS4",
+      authDomain: "trailblazer-project.firebaseapp.com",
+      databaseURL: "https://trailblazer-project.firebaseio.com",
+      projectId: "trailblazer-project",
+      storageBucket: "trailblazer-project.appspot.com",
+      messagingSenderId: "615321105967"
+    };
+    firebase.initializeApp(config);
 
-  var list = JSON.parse(localStorage.getItem("checklist"));
+    var dataRef = firebase.database();
 
-  // Checks to see if the todolist exists in localStorage and is an array currently
-  // If not, set a local list variable to an empty array
-  // Otherwise list is our current list of todos
-  if (!Array.isArray(list)) {
-    list = [];
+    // Initial Values
+    var city = "";
+    var trailName = "";
+    var trailDescription = "";
+    var trailThumbnailUrl = "";
+
+    // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+    dataRef.ref("/trails/").on("value", function(childSnapshot) {
+
+      // Log everything that's coming out of snapshot
+      console.log(childSnapshot.val().trailName);
+
+
+      // Write trail name to <h1> tag
+      $("#trail-name").text(childSnapshot.val().trailName);
+      $(".weatherwidget-io").attr("href", "https://forecast7.com/en/39d25n106d29/" + childSnapshot.val().trailCity + "/?unit=us");
+      $(".weatherwidget-io").attr("data-label_1", childSnapshot.val().trailCity + ", " + childSnapshot.val().trailState);
+      $("#cityState").text(childSnapshot.val().trailCity + ", " + childSnapshot.val().trailState);
+      $(".locationName").text(childSnapshot.val().trailCity + ", " + childSnapshot.val().trailState);
+      $(".weatherInfo").attr("href", "//forecast7.com/en/39d25n106d29/" + childSnapshot.val().trailCity + "/?unit=us");
+
+    // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
+
+  // Check weather and activity (from Firebase) to display appropriate checklist arrays
+
+  // Write array to checklist area (Using universalChecklist for testing)
+  for (var i = 0; i < universalChecklist.length; i++) {
+    // Remove spaces from item to store in id value
+    var newItemId = universalChecklist[i].replace(/\s/g,'');
+    // Write to DOM
+    var checkListItem = $("<p>");
+    var newInputItem = $("<input>");
+    newInputItem.attr("type", "checkbox");
+    newInputItem.addClass("checkbox");
+    newInputItem.attr("id", newItemId);
+
+
+    var labelTag = $("<label>");
+    labelTag.attr("for", newItemId);
+    labelTag.addClass("checklist-item");
+    labelTag.append(universalChecklist[i]);
+    checkListItem.append(newInputItem);
+    checkListItem.append(labelTag);
+
+    $("#checklist").append(checkListItem);
   }
 
-  function writeChecklist() {
-    // $("#checklist").empty(); // empties out the html
 
-    var insideList = JSON.parse(localStorage.getItem("checklist"));
-
-    // Checks to see if we have any todos in localStorage
-    // If we do, set the local insideList variable to our todos
-    // Otherwise set the local insideList variable to an empty array
-    if (!Array.isArray(insideList)) {
-      insideList = [];
-    }
-
-    // render our insideList todos to the page
-    for (var i = 0; i < insideList.length; i++) {
-      var p = $("<p>").text(insideList[i]);
-      var b = $("<button class='delete'>").text("x").attr("data-index", i);
-      p.prepend(b);
-      $("#checklist").prepend(p);
-    }
-  }
-
-  writeChecklist();
-
-  // Add checklist item to list from user input
+  // Add checklist item to list from user input - Should we use local storage here ?????
   $("#submit-item").on("click", function(event) {
     event.preventDefault();
 
@@ -81,21 +112,6 @@ $(document).ready(function() {
     console.log(userChecklist);
 
   });
-
-
-
-  // <script>
-  //   // Initialize Firebase
-  //   var config = {
-  //     apiKey: "AIzaSyBEwnr_R2pjbyqaKWxKuSyQBtm3LbTdgS4",
-  //     authDomain: "trailblazer-project.firebaseapp.com",
-  //     databaseURL: "https://trailblazer-project.firebaseio.com",
-  //     projectId: "trailblazer-project",
-  //     storageBucket: "trailblazer-project.appspot.com",
-  //     messagingSenderId: "615321105967"
-  //   };
-  //   firebase.initializeApp(config);
-  // </script>
 
 
 
