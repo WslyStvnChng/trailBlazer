@@ -1,46 +1,51 @@
-  // Directions to map services
 
-// Initialize the Google Map API
 var infoWindow;
-function initMap() {
-  //Latitude and Longitude of Denver, Colorado
-  var myLatLng = { lat: 39.739236, lng: -104.990251 };
+function init() {
+  var myLatLng = { lat: 39.739236, lng: -104.990251 }; //Dynamtic populate their location from firebase
 
-  //Google Map
   var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
+    zoom: 10,
     center: myLatLng
   });
-  infoWindow = new google.maps.InfoWindow();
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+  var trail = new google.maps.Marker({
+    position: { lat: 39.738233, lng: -104.990255},
+    map: map,
+    title: "Train Name: "
+  });
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent("Haha Found You!");
-        infoWindow.open(map);
-        map.setCenter(pos);
-      },
-      function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      }
-    );
-  } else {
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74000, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: ",
+  });
+
+  var trail3 = new google.maps.Marker({
+    position: { lat: 39.74000, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: ",
+  });
+
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+  
+  var trail2 = new google.maps.Marker({
+    position: { lat: 39.74, lng: -104.980255 },
+    map: map,
+    title: "Trail Name: "
+  });
+
+ 
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-}
+
+
