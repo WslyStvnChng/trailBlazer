@@ -13,9 +13,6 @@ firebase.initializeApp(config);
 // Create a variable to reference the database.
 var database = firebase.database();
 
-
-
-
     // Javascript for Date Picker Form Input 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
@@ -106,9 +103,7 @@ $(('#submit-button')).on('click', function (event){
             // Save Variables to Firebase Database
             database.ref('/searches').push({
                 location: location,
-                activity: activity,
                 radius: radius,
-                date: date,
                 city: city,
                 state: state,
                 longitude: longitude,
@@ -152,18 +147,18 @@ function displayTrailInfo(latitude, longitude, radius) {
                 // var trailLatitude = response.trails[i].latitude;
                 // var trailLongitude = response.trails[i].longitude;
             $('#trail-info').append(
-                '<div id=trail data-name="' + response.trails[i].name + '"data-location="' + response.trails[i].location + '"data-latitude="' + response.trails[i].latitude + '"data-longitude="' + response.trails[i].longitude +'"><div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"></div><div id="info"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
+                '<div class=trail data-name="' + response.trails[i].name + '"data-location="' + response.trails[i].location + '"data-latitude="' + response.trails[i].latitude + '"data-longitude="' + response.trails[i].longitude +'"><div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"></div><div id="info"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
                 )
                 if (response.trails[i].conditionDetails === null){
                     console.log('No conditions');
-                    $('#trail').append('</div>');
+                    $('.trail').append('</div>');
                 } else {
                     $('#trail-info').append('<p>Conditions: ' + response.trails[i].conditionDetails + '</p>');
-                    $('#trail').append('</div>');
+                    $('.trail').append('</div>');
                 }
-                $('#trail').data('Name', response.trails[i].name);
-                $('#trail').data('Trail Latitude', response.trails[i].latitude);
-                $('#trail').data('Trail Longitude', response.trails[i].longitude);
+                $('.trail').data('Name', response.trails[i].name);
+                $('.trail').data('Trail Latitude', response.trails[i].latitude);
+                $('.trail').data('Trail Longitude', response.trails[i].longitude);
             }
 
             // Ben Ternary Advice
@@ -177,7 +172,7 @@ function displayTrailInfo(latitude, longitude, radius) {
 
 }
 
-$(document).on('click', ('#trail'), function(event){
+$(document).on('click', ('.trail'), function(event){
     var trailLatitude = $(this).data("latitude");
     console.log('Trail Latitude: ', trailLatitude);
     var trailLongitude = $(this).data('longitude');
@@ -194,7 +189,7 @@ $(document).on('click', ('#trail'), function(event){
     trailCity.replace(' ', '+');
     var trailState = trailCityState[1];
 
-    database.ref('/trails').set({
+    database.ref('/trails').push({
         trailName: trailName,
         trailLatitude: trailLatitude,
         trailLongitude: trailLongitude,
