@@ -27,13 +27,12 @@ var database = firebase.database();
 // Document Loads Before Code Runs
 
 $(document).ready(function() {
-    $('select').material_select();
-        
+    $('select').material_select(); 
 
     // Updates Miles in HTML When Range is Clicked
     $('.range-field').on('click', function(event){
         $('#miles-value').text($('#radius-input').val());
-    })
+    });
 
   // When Submit Button is Clicked
 $(('#submit-button')).on('click', function (event){
@@ -44,43 +43,21 @@ $(('#submit-button')).on('click', function (event){
     event.preventDefault();
 
     // Stores Inputs as Variables
-    var location= $("#location-input").val().trim();
-    console.log('Location:', location);
-    var activity = $("select").val();
-    console.log('Activity:', activity);
+    var city = $("#city-input").val().trim();
+    console.log('City: ', city);
+    var state = $('#state-input').val();
+    console.log('State: ')
     var radius = $("#radius-input").val();
-    console.log('Search Radius:', radius)
-    var date = $("#date-input").val();
-    console.log('Date', date)
-
-    var cityState = location.split(", ");
-    console.log(cityState);
-
-    var city = cityState[0];
-    city.replace(' ', '+');
-    var state = cityState[1];
-    
-
-
+    console.log('Search Radius: ', radius)
    
     // Prevents Submit If Fields Are Empty
-    if (location==="" || activity==="" || radius ==="" || date === "") {
+    if (city==="" || state==="" || radius ==="") {
         alert('Error! Please Enter All Info.')
     
     // Otherwise
     } else {
-
-
-
-        // Clear Input Boxes
-        $('#location-input').val('');
-        $('#activity').val('');
-        $('#radius').val('');
-        $('#date').val('');
-        }
-
+        // Grab Latitude and Longitude from API
         var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + ',+' + state + '&key=AIzaSyBNceJKZRhFdZSITn-8ZwmzDyJ8Co6iZhQ'
-
 
         $.ajax({
             url: googleURL,
@@ -88,64 +65,46 @@ $(('#submit-button')).on('click', function (event){
     
             // When AJAX Call is "Done"
             }).done(function(response) {
-    
                 console.log(response);
-    
                 for (var i=0; i<response.results.length;i++) {
                     console.log(response.results[i].geometry.location);
-    
                     latitude = response.results[i].geometry.location.lat
                     console.log(latitude)
                     longitude = response.results[i].geometry.location.lng
                     console.log(longitude)
                 }
-
             // Save Variables to Firebase Database
             database.ref('/searches').push({
-                location: location,
-                radius: radius,
                 city: city,
+                radius: radius,
                 state: state,
                 longitude: longitude,
                 latitude: latitude,
-        });
-       displayTrailInfo(latitude, longitude, radius);
-    
+            })
+        displayTrailInfo(latitude, longitude, radius);
         })
+    }
 });
-
-
-
 
 
 function displayTrailInfo(latitude, longitude, radius) {
 
-
-
     // Empties Trail Info Container
     $('#trail-info').empty();
-
 
     var apiKey = '200209309-2a8d10ade11cd96cedf39716cfa65127';
 
     // Creates URL with Search Term for Trail API
     var trailURL ='https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&sort=distance&maxResults=15&maxDistance=' + radius + '&key=' + apiKey;
 
-
-
     $.ajax({
         url: trailURL,
         method: "GET",
         // When AJAX Call is "Done"
         }).success(function(response) {
-
-
             console.log(response);
 
             for (var i=0; i<response.trails.length;i++) {
-
-                // var trailLatitude = response.trails[i].latitude;
-                // var trailLongitude = response.trails[i].longitude;
             $('#trail-info').append(
                 '<div class=trail data-name="' + response.trails[i].name + '"data-location="' + response.trails[i].location + '"data-latitude="' + response.trails[i].latitude + '"data-longitude="' + response.trails[i].longitude +'"><div id = "thumbnail"><img class="trail-thumbnail" src="' + response.trails[i].imgSmall + '"></div><div id="info"><br>Trail Name: ' + response.trails[i].name + ' Length: ' + response.trails[i].length + ' Rating: ' + response.trails[i].stars + ' Latitude: ' + response.trails[i].latitude + ' Longitude: ' + response.trails[i].longitude + ' Summary: ' +response.trails[i].summary + '</div>'
                 )
@@ -161,18 +120,12 @@ function displayTrailInfo(latitude, longitude, radius) {
                 $('.trail').data('Trail Longitude', response.trails[i].longitude);
             }
 
-            // Ben Ternary Advice
-            // typeof thumbnail ==== 'string' ? thumbnail : defaultSrc
-
         }).error(function(error){
             console.log('Error', error);
         })
-    
+};
 
-
-}
-
-$(document).on('click', ('.trail'), function(event){
+$(document).on('click', '.trail', function(event){
     var trailLatitude = $(this).data("latitude");
     console.log('Trail Latitude: ', trailLatitude);
     var trailLongitude = $(this).data('longitude');
@@ -196,10 +149,6 @@ $(document).on('click', ('.trail'), function(event){
         trailCity: trailCity,
         trailState: trailState,
     })
-})
-
-
-
-
+});
 
 });

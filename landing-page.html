@@ -19,7 +19,8 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets\css\materialize.css">
+  <link rel="stylesheet" href="assets/css/materialize.css">
+  <link rel="stylesheet" href="assets/css/materialize.min.css">
 
   <!-- Slider CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/nouislider.css">
@@ -33,200 +34,124 @@
 </head>
 <body>
   
-                    <!----------------------------------------------------------------------
-                    -------------------------------------- COVER IMAGE
-                    ---------------------------------------------------------------------->
-
-
+    <!-- Cover Image -->
     <div id="cover">
-      <img class="responsive-img" src="assets/images/cover-image.jpg" style="z-index: -1">
-
-    
+      <img class="responsive-img" src="assets/images/cover-image.jpg" style="width: 100vw; height: 80%">
   
-                   <!----------------------------------------------------------------------
-                    -------------------------------------- LOGO IMAGE                    ---------------------------------------------------------------------->
 
-  <div class="logo-image">
+    <!-- Logo Image -->
+    <div class="logo-image">
       <img src="assets/images/tblogo.png" alt="TrailBlazer" class="ctr">
-  </div>
-
-
-                  <!----------------------------------------------------------------------
-                    -------------------------------------- USER INPUT FORM
-                    ---------------------------------------------------------------------->
-
-
-  <div class="form-container">
-    <div class="row">
-        <div class="col m12">
-          <div class="card" style="margin: 0 auto; width: 50vw; background:rgba(255,255,255, 0.85); border-radius: 10px">
-
-              <div class="card-content">
-                
-                               
-                  <!----------------------------------------------------------------------
-                    -------------------------------------- LOCATION INPUT
-                    ---------------------------------------------------------------------->
-          
-
-
-                    <div class="row">    
-
-                        <! --------------------------- CITY INPUT -->
-
-                          <div class="input-field col s8">
-                              <input id="city-input" type="text" class="validate">
-                              <label for="city">City</label>                             
-                          </div>
-
-
-
-                        <! --------------------------- STATE INPUT -->
-
-                          <div class="input-field col s4">
-                              <select>
-                                  
-                                    <option id="state-input" value="state" disabled selected>State</option>
-                                    <option value="alabama">Alabama</option>
-                                    <option value="alaska">Alaska</option>
-                                    <option value="arizona">Arizona</option>
-                                    <option value="arkansas">Arkansas</option>
-                                    <option value="california">California</option>
-                                    <option value="colorado">Colorado</option>
-                                    <option value="connecticut">Connecticut</option>
-                                    <option value="delaware">Delaware</option>
-                                    <option value="florida">Florida</option>
-                                    <option value="georgia">Georgia</option>
-                                    <option value="hawaii">Hawaii</option>
-                                    <option value="idaho">Idaho</option>
-                                    <option value="illinois">Illinois</option>
-                                    <option value="indiana">Indiana</option>
-                                    <option value="iowa">Iowa</option>
-                                    <option value="kansas">Kansas</option>
-                                    <option value="kentucky">Kentucky</option>
-                                    <option value="louisiana">Louisiana</option>
-                                    <option value="maine">Maine</option>
-                                    <option value="maryland">Maryland</option>
-                                    <option value="massachusetts">Massachusetts</option>
-                                    <option value="michigan">Michigan</option>
-                                    <option value="minnesota">Minnesota</option>
-                                    <option value="mississippi">Mississippi</option>
-                                    <option value="missouri">Missouri</option>
-                                    <option value="montana">Montana</option>
-                                    <option value="nebraska">Nebraska</option>
-                                    <option value="nevada">Nevada</option>
-                                    <option value="newhampshire">New Hampshire</option>
-                                    <option value="newjersey">New Jersey</option>
-                                    <option value="newmexico">New Mexico</option>
-                                    <option value="newyork">New York</option>
-                                    <option value="northcarolina">North Carolina</option>
-                                    <option value="northdakota">North Dakota</option>
-                                    <option value="ohio">Ohio</option>
-                                    <option value="oklahoma">Oklahoma</option>
-                                    <option value="oregon">Oregon</option>
-                                    <option value="pennsylvania">Pennsylvania</option>
-                                    <option value="rhodeisland">Rhode Island</option>
-                                    <option value="southcarolina">South Carolina</option>
-                                    <option value="southdakota">South Dakota</option>
-                                    <option value="tennessee">Tennessee</option>
-                                    <option value="texas">Texas</option>
-                                    <option value="utah">Utah</option>
-                                    <option value="vermont">Vermont</option>
-                                    <option value="virginia">Virginia</option>
-                                    <option value="washington">Washington</option>
-                                    <option value="westvirginia">West Virginia</option>
-                                    <option value="wisconsin">Wisconsin</option>
-                                    <option value="wyoming">Wyoming</option>
-                                  
-                              </select>        
-                                                     
-                          </div>
-                      </div>
-
-
-
-                  <!----------------------------------------------------------------------
-                    -------------------------------------- ACTIVITY DROP DOWN INPUT
-                    ---------------------------------------------------------------------->
-
-
-
-
-                      <div class="row">
-                          <div class="input-field col s12">
-                              <select id="adventure" class="icons">
-                                  <option value="" disabled selected>Choose your activity</option>
-                                  <option value="biking" data-icon="assets/images/biking.png" class="left circle">Biking</option>
-                                  <option value="hiking" data-icon="assets/images/hiking.png" class="left circle">Hiking</option>
-                                  <option value="camping" data-icon="assets/images/camping.jpg" class="left circle">Camping</option>
-                              </select>
-                          </div>
-                      </div>
-
-                    
-
-                  <!----------------------------------------------------------------------
-                    -------------------------------------- RADIUS SLIDER
-                    ---------------------------------------------------------------------->
-
-                        <div class="row">                      
-                          
-                             
-                              
-                                  <label for="radius-input" class="radius">Search Radius</label>
-                                  <form action="#">
-                                
-                                <p class="range-field">
-                                  <input type="range" id="radius-input" min="0" max="150" />
-                                </p>
-                                </form>
-                                <label for="miles" class="miles">Miles: <span id="miles-value"></span></label>
-                                
-                          
-                        </div>
-
-
-
-                    <!----------------------------------------------------------------------
-                    -------------------------------------- DATE PICKER
-                    ---------------------------------------------------------------------->
-
-
-                        <div class="row">
-                          <div class="input-field col s12">
-                              <label for="date-input">Date</label>
-                              <input type="text" class="datepicker" id="date-input">
-                               
-                          </div>
-                        </div>
-                        <a class="btn waves-effect lime darken-4" type="submit" id="submit-button">Submit<i class="material-icons right">send</i>
-                        </a>
-                       
-                     
-                    </div>        
-                      
-            <div class="card-action center-align">
-                © 2018 Four Happy Campers
-              </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-      </div>
-  </div>
-  
-  <!-- Trail API -->
-
-  <div id = 'trail-container'>
-      <div id = 'trail-info'></div>
     </div>
 
 
+    <!-- User Input Form -->
+    <div class="form-container">
+        <div class="row">
+            <div class="col m12">
+            <div class="card" style="margin: 0 auto; width: 30vw; background:rgba(255,255,255, 0.85); border-radius: 10px">
+                <div class="card-content">
+                   
+        <!-- City Input -->
+        <div class="row"> 
+            <div class="input-field col s12 m12 l12">
+            <input id="city-input" type="text" class="validate">
+            <label for="city">City</label>                             
+            </div>
+        </div>
 
+        <!-- State Input -->
+        <div class="row">
+            <div class="input-field col s12" id='state-input'>
+            <select>
+                <option id="state-input" value="state" disabled selected>State</option>
+                <option value="alabama">Alabama</option>
+                <option value="alaska">Alaska</option>
+                <option value="arizona">Arizona</option>
+                <option value="arkansas">Arkansas</option>
+                <option value="california">California</option>
+                <option value="colorado">Colorado</option>
+                <option value="connecticut">Connecticut</option>
+                <option value="delaware">Delaware</option>
+                <option value="florida">Florida</option>
+                <option value="georgia">Georgia</option>
+                <option value="hawaii">Hawaii</option>
+                <option value="idaho">Idaho</option>
+                <option value="illinois">Illinois</option>
+                <option value="indiana">Indiana</option>
+                <option value="iowa">Iowa</option>
+                <option value="kansas">Kansas</option>
+                <option value="kentucky">Kentucky</option>
+                <option value="louisiana">Louisiana</option>
+                <option value="maine">Maine</option>
+                <option value="maryland">Maryland</option>
+                <option value="massachusetts">Massachusetts</option>
+                <option value="michigan">Michigan</option>
+                <option value="minnesota">Minnesota</option>
+                <option value="mississippi">Mississippi</option>
+                <option value="missouri">Missouri</option>
+                <option value="montana">Montana</option>
+                <option value="nebraska">Nebraska</option>
+                <option value="nevada">Nevada</option>
+                <option value="newhampshire">New Hampshire</option>
+                <option value="newjersey">New Jersey</option>
+                <option value="newmexico">New Mexico</option>
+                <option value="newyork">New York</option>
+                <option value="northcarolina">North Carolina</option>
+                <option value="northdakota">North Dakota</option>
+                <option value="ohio">Ohio</option>
+                <option value="oklahoma">Oklahoma</option>
+                <option value="oregon">Oregon</option>
+                <option value="pennsylvania">Pennsylvania</option>
+                <option value="rhodeisland">Rhode Island</option>
+                <option value="southcarolina">South Carolina</option>
+                <option value="southdakota">South Dakota</option>
+                <option value="tennessee">Tennessee</option>
+                <option value="texas">Texas</option>
+                <option value="utah">Utah</option>
+                <option value="vermont">Vermont</option>
+                <option value="virginia">Virginia</option>
+                <option value="washington">Washington</option>
+                <option value="westvirginia">West Virginia</option>
+                <option value="wisconsin">Wisconsin</option>
+                <option value="wyoming">Wyoming</option>   
+            </select>                                
+            </div>
+        </div>
 
+        <!-- Search Radius -->
+        <div class="row">                      
+            <label for="radius-input" class="radius">Search Radius</label>
+            <form action="#">             
+            <p class="range-field">
+            <input type="range" id="radius-input" min="0" max="150" />
+            </p>
+            </form>
+            <label for="miles" class="miles">Miles: <span id="miles-value"></span></label>
+        </div>
 
+        <!-- Submit Button -->
+        <div id = 'submit-button'>
+            <a class="btn waves-effect lime darken-4" type="submit" id="submit-button">Submit<i class="material-icons right">send</i></a>
+        </div>        
+                      
 
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+    <!-- Trail API -->
+    <div id = 'trail-container'>
+        <div id = 'trail-info'></div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="card-action center-align">
+        © 2018 Four Happy Campers
+    </div>
 
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
